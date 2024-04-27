@@ -162,7 +162,7 @@ if train_enable:
             y_hat=np.zeros((max_length,trjs_s,DataDim))
             with torch.no_grad():
                 for tt in range(max_length):
-                    sde = SDE(model, model_name="bb", init_ind=tt,max_length=max_length,dt=0.3, sigma=0 * sigma, device=device)
+                    sde = SDE(model, model_name="IDFF", init_ind=tt,max_length=max_length,dt=0.3, sigma=0 * sigma, device=device)
                     if tt==0:
                         x1 = torch.randn((trjs_s,y_hat.shape[-1])).to(device).float()
                     else:
@@ -231,8 +231,8 @@ else:
         # plt.tight_layout()
     axes[0].set_xlim([-180, 180])
     axes[0].set_ylim([-180, 180])
-    plt.savefig(savedir + f"_generated_FM_images_step_test.png")
-    plt.savefig(savedir + f"_generated_FM_images_step_test.svg", format='svg')
+    plt.savefig(savedir + f"_generated_IDFF_images_step_test.png")
+    plt.savefig(savedir + f"_generated_IDFF_images_step_test.svg", format='svg')
     plt.close()
 
     fig, axes = plt.subplots(2, 1, figsize=(8, 4), sharex=True, sharey=False)

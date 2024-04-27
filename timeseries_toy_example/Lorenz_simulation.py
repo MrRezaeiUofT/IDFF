@@ -35,10 +35,10 @@ class SDE(torch.nn.Module):
         if t == 0:
             self.x0 = y
             outs = predicts[:, :DataDim]- self.x0
-        elif ((t ==  1)):
-            outs =torch.sqrt(1 - (self.sigma ** 2) * t * (1 - t)) (predicts[:, :DataDim] - y)/.01  - (predicts[:, DataDim:]/2)*self.sigma*torch.sqrt((t)*(1-t))
+        elif (t ==  1):
+            outs =torch.sqrt(1 - (self.sigma ** 2) * t * (1 - t))* (predicts[:, :DataDim] - y)/.01  - (predicts[:, DataDim:]/2)*self.sigma*torch.sqrt((t)*(1-t))
         else:
-            outs = (predicts[:, :DataDim] - y)/(1-t) - (predicts[:, DataDim:]/2)*1*torch.sqrt((t)*(1-t))
+            outs =torch.sqrt(1 - (self.sigma ** 2) * t * (1 - t))*  (predicts[:, :DataDim] - y)/(1-t) - (predicts[:, DataDim:]/2)*self.sigma*torch.sqrt((t)*(1-t))
 
         return outs.flatten(start_dim=1)
 
@@ -158,7 +158,7 @@ else:
     y_hat = np.zeros((max_length, trjs_s, DataDim))
     with torch.no_grad():
         for tt in range(max_length):
-            sde = SDE(model, model_name="bb", init_ind=tt, max_length=max_length, sigma=0 * sigma, device=device)
+            sde = SDE(model, model_name="IDFF", init_ind=tt, max_length=max_length, sigma=1 * sigma, device=device)
             if tt == 0:
                 x1 = torch.randn((trjs_s, y_hat.shape[-1])).to(device).float()
             else:

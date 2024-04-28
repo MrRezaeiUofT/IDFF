@@ -9,7 +9,7 @@ from torchvision.utils import make_grid, save_image
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
-IMG_DIM=32
+IMG_DIM=64
 class SDE(torch.nn.Module):
     noise_type = "diagonal"
     sde_type = "ito"
@@ -43,7 +43,6 @@ class SDE(torch.nn.Module):
         elif ((t== 1) ):
             outs = (predicts[:, :3, :, :]-y)/self.dt
         else:
-
             outs =torch.sqrt(1-(self.sigma**2)*t*(1-t))*(predicts[:, :3, :, :]  - y) / (1 - t)\
                   - (predicts[:, 3:, :, :]) * self.sigma * torch.sqrt((t) * (1 - t))
 
@@ -81,17 +80,15 @@ def generate_samples(model, parallel, savedir, step, net_="normal",sde_enable=Fa
             sde_traj = torchsde.sdeint(
                 sde,
                 # x0.view(x0.size(0), -1),
-                torch.randn(64, 3 * IMG_DIM * IMG_DIM, device=device),
+                torch.randn(32, 3 * IMG_DIM * IMG_DIM, device=device),
                 ts=torch.linspace(0, 1, 10, device=device),
                 dt=sde.dt,
             )
         images_to_show = sde_traj[-1, :].view([-1, 3, IMG_DIM, IMG_DIM]).clip(-1, 1)
         images_to_show = images_to_show / 2 + 0.5
-        images_to_show=torch.clamp(images_to_show,0,1)
         save_image(images_to_show, savedir + f"{net_}_generated_IDFF_images_step_{step}.png", nrow=8)
     else:
-        pass
-
+       pass
     model.train()
 
 

@@ -10,7 +10,7 @@ import copy
 import torch
 from absl import app, flags
 
-from utils_cifar import ema, generate_samples
+from utils_celeba import ema, generate_samples
 
 from torchcfm.models.unet.unet import UNetModelWrapper
 
@@ -28,6 +28,7 @@ flags.DEFINE_bool("parallel", False, help="multi gpu training")
 
 
 
+
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 
@@ -35,10 +36,10 @@ def sample_gen(argv=1):
 
     # MODELS
     net_model = UNetModelWrapper(
-        dim=(6, 32, 32),
+        dim=(6, 64, 64),
         num_res_blocks=2,
         num_channels=FLAGS.num_channel,
-        channel_mult=[1, 2,2, 4],
+        channel_mult=[1, 2,2, 4, 4],
         num_heads=4,
         num_head_channels=64,
         attention_resolutions="16",
@@ -62,7 +63,7 @@ def sample_gen(argv=1):
     savedir =  FLAGS.output_dir + FLAGS.model +'-'+str(FLAGS.flow_w)+'-'+ str(sigma)+ "/"
 
     # Load the model
-    PATH = f"{FLAGS.output_dir}/{FLAGS.model+'-'+str(FLAGS.flow_w)+'-'+ str(sigma)}/{FLAGS.model}_cifar10_weights_step_final.pt"
+    PATH = f"{FLAGS.output_dir}/{FLAGS.model+'-'+str(FLAGS.flow_w)+'-'+ str(sigma)}/{FLAGS.model}_celeba_weights_step_final.pt"
     print("path: ", PATH)
     checkpoint = torch.load(PATH, map_location=torch.device('cpu'))
     state_dict = checkpoint["ema_model"]
@@ -79,7 +80,7 @@ def sample_gen(argv=1):
     ema_model = copy.deepcopy(net_model)
     ema(net_model, ema_model, FLAGS.ema_decay)  # new
 
-    # generate_samples(net_model, FLAGS.parallel, savedir, 'final', net_="normal",sde_enable=True,sigma=1*sigma,model_name=FLAGS.model)
+    # generate_samples(net_model, FLAGS.parallel, savedir, FLAGS.step, net_="normal",sde_enable=True,sigma=1*sigma,model_name=FLAGS.model)
     generate_samples(ema_model, FLAGS.parallel, savedir, 'final', net_="ema",sde_enable=True,sigma=1*sigma,model_name=FLAGS.model)
 
 

@@ -62,7 +62,7 @@ the ```results/IDFF-2.0-0.2``` directory associated with each example.
     <td>11.83</td>
     <td>10</td>
     <td><a href="https://drive.google.com/file/d/1tC9cDLb11fTCou_iLt39KvIsBc1ZGAI4/view?usp=drive_link">IDFF_celeba_weights_step_final.pt</a></td>
-    <td><a href="assets/celebA_samples.png">celeba_64_samples</a></td>
+    <td><a href="assets/celeba_samples.png">celeba_64_samples</a></td>
   </tr>
 
   <tr>
@@ -71,7 +71,7 @@ the ```results/IDFF-2.0-0.2``` directory associated with each example.
     <td>---</td>
     <td>10</td>
     <td><a href="">IDFF_celeba_256_weights_step_final.pt</a></td>
-    <td><a href="assets/celebAHQ_samples.png">celeba_256_samples</a></td>
+    <td><a href="assets/celeb_HQ_samples.png">celeba_256_samples</a></td>
   </tr>
     
   <tr>

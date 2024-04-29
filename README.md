@@ -53,7 +53,7 @@ the ```results/IDFF-2.0-0.2``` directory associated with each example.
     <td>5.87</td>
     <td>10</td>
     <td><a href="https://drive.google.com/file/d/1973PZkSWH_7iVWBQ6xmQAPcdQGmnSgwu/view?usp=sharing">IDFF_cifar10_weights_step_final.pt</a></td>
-    <td><a href="cifar10/cifar10_samples.png">cifar10_samples</a></td>
+    <td><a href="assets/cifar10_samples.png">cifar10_samples</a></td>
   </tr>
 
   <tr>
@@ -62,7 +62,7 @@ the ```results/IDFF-2.0-0.2``` directory associated with each example.
     <td>11.83</td>
     <td>10</td>
     <td><a href="https://drive.google.com/file/d/1tC9cDLb11fTCou_iLt39KvIsBc1ZGAI4/view?usp=drive_link">IDFF_celeba_weights_step_final.pt</a></td>
-    <td><a href="celebA/celebA_samples.png">celeba_64_samples</a></td>
+    <td><a href="assets/celebA_samples.png">celeba_64_samples</a></td>
   </tr>
 
   <tr>
@@ -71,7 +71,7 @@ the ```results/IDFF-2.0-0.2``` directory associated with each example.
     <td>---</td>
     <td>10</td>
     <td><a href="">IDFF_celeba_256_weights_step_final.pt</a></td>
-    <td><a href="celebA_HQ/celebA_samples.png">celeba_256_samples</a></td>
+    <td><a href="assets/celebAHQ_samples.png">celeba_256_samples</a></td>
   </tr>
     
   <tr>
@@ -80,7 +80,7 @@ the ```results/IDFF-2.0-0.2``` directory associated with each example.
     <td>---</td>
     <td>10</td>
     <td><a href="">IDFF_lsun_bed_weights_step_final.pt</a></td>
-    <td><a href="lsun_bed/lsun_bed_samples.png">lsun_bed_samples</a></td>
+    <td><a href="assets/lsun_bed_samples.png">lsun_bed_samples</a></td>
   </tr>
 
   <tr>
@@ -89,7 +89,7 @@ the ```results/IDFF-2.0-0.2``` directory associated with each example.
     <td>12.86</td>
     <td>10</td>
     <td><a href="">IDFF_lsun_church_weights_step_final.pt</a></td>
-    <td><a href="lsun_church/lsun_church_samples.png">lsun_church_samples</a></td>
+    <td><a href="assets/lsun_church_samples.png">lsun_church_samples</a></td>
   </tr>
 </table>
 
@@ -108,7 +108,7 @@ the ```results/IDFF-2.0-0.2``` directory associated with each example.
   <tr>
     <td> SST </td>
     <td><a href="sst/sst_forecaster.py"> sst/sst_forecaster.py</a></td>
-    <td><a href="">IDFF_sst_weights_step_final.pt</a></td>
+    <td><a href="https://drive.google.com/file/d/1z0Z6tXbwZzrUvQrBFqiyjmc99JuhOj-s/view?usp=sharing">IDFF_sst_weights_step_final.pt</a></td>
     
   </tr>
 </table>

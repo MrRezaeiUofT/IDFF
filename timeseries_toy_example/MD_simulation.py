@@ -185,12 +185,12 @@ if train_enable:
             plt.savefig(savedir + f"_generated_IDFF_images_step_{k}.png")
             plt.savefig(savedir + f"_generated_IDFF_images_step_{k}.svg", format='svg')
 
-    torch.save(model, f"{savedir}/IDFF_v1.pt")
+    torch.save(model, f"{savedir}/IDFF_MD_v1.pt")
 
 
 #################test
 else:
-    model=(torch.load(f"{savedir}/IDFF_v1.pt", map_location=torch.device('cpu'))).to(device)
+    model=(torch.load(f"{savedir}/IDFF_MD_v1.pt", map_location=torch.device('cpu'))).to(device)
     y_hat=np.zeros((max_length,trjs_s,DataDim))
     with torch.no_grad():
             for tt in range(max_length):

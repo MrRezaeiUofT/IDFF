@@ -13,7 +13,7 @@ See bellow for an illustration:
 
 
 <p align="center">
-<img src="Figure_1.png" alt="IDFF" width="80%"/>
+<img src="assets/Figure_1.png" alt="IDFF" width="90%"/>
 </p>
 
 <p align="center">
@@ -35,8 +35,8 @@ associated with each dataset (inside each directory).
 To be able to run the code you need to download the pretrained model from below or train it from scratch.
 
 Each pretrained model should be moved to 
-the ```results/IDFF``` directory associated with each example.
-## Pretrained
+the ```results/IDFF-2.0-0.2``` directory associated with each example.
+## Pretrained Image Generation Models
 <table>
   <tr>
     <th>Exp</th>
@@ -44,6 +44,7 @@ the ```results/IDFF``` directory associated with each example.
     <th>FID</th>
     <th>NFE</th>
     <th>Checkpoints</th>
+    <th>Samples</th>
   </tr>
 
   <tr>
@@ -51,7 +52,8 @@ the ```results/IDFF``` directory associated with each example.
     <td><a href="cifar10/simple_gen_test.py"> cifar10/simple_gen_test.py</a></td>
     <td>5.87</td>
     <td>10</td>
-    <td><a href="">IDFF_cifar10_weights_step_final.pt</a></td>
+    <td><a href="https://drive.google.com/file/d/1973PZkSWH_7iVWBQ6xmQAPcdQGmnSgwu/view?usp=sharing">IDFF_cifar10_weights_step_final.pt</a></td>
+    <td><a href="cifar10/cifar10_samples.png">cifar10_samples</a></td>
   </tr>
 
   <tr>
@@ -59,7 +61,8 @@ the ```results/IDFF``` directory associated with each example.
     <td><a href="celebA/simple_gen_test.py"> celebA/simple_gen_test.py</a></td>
     <td>11.83</td>
     <td>10</td>
-    <td><a href="">IDFF_celeba_weights_step_final.pt</a></td>
+    <td><a href="https://drive.google.com/file/d/1tC9cDLb11fTCou_iLt39KvIsBc1ZGAI4/view?usp=drive_link">IDFF_celeba_weights_step_final.pt</a></td>
+    <td><a href="celebA/celebA_samples.png">celeba_64_samples</a></td>
   </tr>
 
   <tr>
@@ -68,14 +71,16 @@ the ```results/IDFF``` directory associated with each example.
     <td>---</td>
     <td>10</td>
     <td><a href="">IDFF_celeba_256_weights_step_final.pt</a></td>
+    <td><a href="celebA_HQ/celebA_samples.png">celeba_256_samples</a></td>
   </tr>
     
   <tr>
     <td> LSUN-Bed </td>
     <td><a href="lsun_bed/simple_gen_test.py"> lsun_bed/simple_gen_test.py</a></td>
-    <td>26.86</td>
+    <td>---</td>
     <td>10</td>
     <td><a href="">IDFF_lsun_bed_weights_step_final.pt</a></td>
+    <td><a href="lsun_bed/lsun_bed_samples.png">lsun_bed_samples</a></td>
   </tr>
 
   <tr>
@@ -84,18 +89,62 @@ the ```results/IDFF``` directory associated with each example.
     <td>12.86</td>
     <td>10</td>
     <td><a href="">IDFF_lsun_church_weights_step_final.pt</a></td>
+    <td><a href="lsun_church/lsun_church_samples.png">lsun_church_samples</a></td>
+  </tr>
+</table>
+
+
+## Pretrained Time-series Generation Models
+
+### Sea Surface Temperature (SST) Forecasting
+<table>
+  <tr>
+    <th>Exp</th>
+    <th>Args</th>
+    <th>Checkpoints</th>
+ 
   </tr>
 
-
-
-
-
-
+  <tr>
+    <td> SST </td>
+    <td><a href="sst/sst_forecaster.py"> sst/sst_forecaster.py</a></td>
+    <td><a href="">IDFF_sst_weights_step_final.pt</a></td>
+    
+  </tr>
 </table>
+<p align="center">
+<img src="assets/Figure_sst.png" alt="sst_IDFF" width="90%"/>
+</p>
+<p align="center">
+<img src="assets/Figure_sst_results.png" alt="sst_IDFF_result" width="90%"/>
+</p>
+
+### Molecular Dynamic
+<table>
+  <tr>
+    <th>Exp</th>
+    <th>Args</th>
+    <th>Checkpoints</th>
+ 
+  </tr>
+
+  <tr>
+    <td> MD </td>
+    <td><a href="timeseries_examples/MD_simulation.py"> timeseries_examples/MD_simulation.py</a></td>
+    <td><a href="https://drive.google.com/file/d/1Pcq8BFkk4y1YirBdxK1ADM6hPMAbFC-P/view?usp=sharing">IDFF_MD_v1.pt</a></td>
+    
+  </tr>
+</table>
+<p align="center">
+<img src="assets/Figure_MD.png" alt="MD_IDFF" width="90%"/>
+</p>
+<p align="center">
+<img src="assets/Figure_MD_results.png" alt="MD_IDFF_result" width="90%"/>
+</p>
 
 ## Dataset preparation 
 
-For CelebA HQ 256, FFHQ 256 and LSUN, please check [NVAE's instructions](https://github.com/NVlabs/NVAE#set-up-file-paths-and-data) out.
+For CelebA HQ 256 and LSUN datasets, we used instruction provided here [NVAE's instructions](https://github.com/NVlabs/NVAE#set-up-file-paths-and-data) out.
 
 The datasets for SST and MD experiments are provided [Here]().
 ## FID and 50K sample generation

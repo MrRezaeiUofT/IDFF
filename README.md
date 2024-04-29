@@ -9,7 +9,7 @@ See bellow for an illustration:
 
 
 <p align="center">
-<img src="Figure_1.png" alt="alternators" width="80%"/>
+<img src="Figure_1.png" alt="IDFF" width="80%"/>
 </p>
 
 <p align="center">
@@ -29,6 +29,7 @@ python simple_gen_test.py
 ```
 associated with each dataset (inside each directory). 
 To be able to run the code you need to download the pretrained model from below or train it from scratch.
+
 Each pretrained model should be moved to 
 the ```results/IDFF``` directory associated with each example.
 ## Pretrained

@@ -13,10 +13,9 @@ from absl import app, flags
 from torchdyn.core import NeuralODE
 from torchvision import datasets, transforms
 from tqdm import trange
-from utils_celeba import ema, generate_samples, infiniteloop
+from utils_lsun import ema, generate_samples, infiniteloop
 
 from torchcfm.conditional_flow_matching import ExactOptimalTransportConditionalFlowMatcher
-
 from torchcfm.models.unet.unet import UNetModelWrapper
 
 FLAGS = flags.FLAGS
@@ -35,11 +34,11 @@ flags.DEFINE_integer(
     "total_steps", 500001, help="total training steps"
 )  # Lipman et al uses 400k but double batch size
 flags.DEFINE_integer(
-    "pre_step", 200000, help="total training steps")
+    "pre_step", 100000, help="total training steps")
 flags.DEFINE_bool("pretrain", False, help="enable pre-train")
 flags.DEFINE_integer("warmup", 5000, help="learning rate warmup")
-flags.DEFINE_integer("batch_size", 8, help="batch size")  # Lipman et al uses 128
-flags.DEFINE_integer("num_workers", 8, help="workers of Dataloader")
+flags.DEFINE_integer("batch_size", 16, help="batch size")  # Lipman et al uses 128
+flags.DEFINE_integer("num_workers", 4, help="workers of Dataloader")
 flags.DEFINE_float("ema_decay", 0.9999, help="ema decay rate")
 flags.DEFINE_bool("parallel", False, help="multi gpu training")
 
@@ -69,11 +68,13 @@ def train(argv):
     )
 
     # DATASETS/DATALOADER
-    lmdb_path = "/data/celeba_256/celeba-lmdb/"
+    data_dir = "/n/fs/reza/lsun_data/lsun"
     transform = transforms.Compose([
     transforms.Resize((256, 256)),
     transforms.ToTensor(),transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-    dataset = LMDBDataset(root=lmdb_path, name='celeba', train=True, transform=transform)
+
+    dataset = datasets.LSUN(root=data_dir, classes=['church_outdoor_train'],transform=transform)
+
     dataloader = torch.utils.data.DataLoader(
         dataset,
         batch_size=FLAGS.batch_size,
@@ -81,7 +82,6 @@ def train(argv):
         num_workers=FLAGS.num_workers,
         drop_last=True,
     )
-
     datalooper = infiniteloop(dataloader)
 
     # MODELS
@@ -98,7 +98,7 @@ def train(argv):
         device
     )  # new dropout + bs of 128
     if FLAGS.pretrain:
-        PATH_pre = f"{FLAGS.output_dir}/{FLAGS.model+'-'+str(FLAGS.flow_w)+'-'+ str(FLAGS.sigma)}/{FLAGS.model}_celeba_weights_step_{FLAGS.pre_step}.pt"
+        PATH_pre = f"{FLAGS.output_dir}/{FLAGS.model+'-'+str(FLAGS.flow_w)+'-'+ str(FLAGS.sigma)}/{FLAGS.model}_lsun_church_weights_step_{FLAGS.pre_step}.pt"
         print("path: ", PATH_pre)
         checkpoint = torch.load(PATH_pre)
         state_dict = checkpoint["ema_model"]
@@ -110,9 +110,8 @@ def train(argv):
             for k, v in state_dict.items():
                 new_state_dict[k[7:]] = v
             net_model.load_state_dict(new_state_dict)
-    else:
-        print('No-pretrained model loaded')
-
+        else:
+            print('No-pretrained model loaded')
     ema_model = copy.deepcopy(net_model)
     optim = torch.optim.AdamW(net_model.parameters(), lr=FLAGS.lr)
     sched = torch.optim.lr_scheduler.LambdaLR(optim, lr_lambda=warmup_lr)
@@ -134,7 +133,6 @@ def train(argv):
     #################################
 
     sigma = FLAGS.sigma
-
     FM = ExactOptimalTransportConditionalFlowMatcher(sigma=sigma)
 
 
@@ -175,7 +173,7 @@ def train(argv):
                         "optim": optim.state_dict(),
                         "step": step+FLAGS.pre_step,
                     },
-                    savedir + f"{FLAGS.model}_celeba_weights_step_{step+FLAGS.pre_step}.pt",
+                    savedir + f"{FLAGS.model}_lsun_church_weights_step_{step+FLAGS.pre_step}.pt",
                 )
                 else:
                     # generate_samples(net_model, FLAGS.parallel, savedir, step, net_="normal",sde_enable=True,sigma=sigma,model_name=FLAGS.model)
@@ -186,9 +184,9 @@ def train(argv):
                         "ema_model": ema_model.state_dict(),
                         "sched": sched.state_dict(),
                         "optim": optim.state_dict(),
-                        "step": step,
+                        "step": step+FLAGS.pre_step,
                     },
-                    savedir + f"{FLAGS.model}_celeba_256_weights_step_{step}.pt",
+                    savedir + f"{FLAGS.model}_lsun_church_weights_step_{step}.pt",
                 )
 
 

@@ -68,7 +68,7 @@ def train(argv):
     )
 
     # DATASETS/DATALOADER
-    data_dir = "/n/fs/reza/lsun_data/lsun"
+    data_dir = "./data/lsun_data/lsun"
     transform = transforms.Compose([
     transforms.Resize((256, 256)),
     transforms.ToTensor(),transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])

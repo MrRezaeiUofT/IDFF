@@ -18,7 +18,7 @@ batch_size=500
 total_num=50000
 device = torch.device('cpu')
 dataset = datasets.CIFAR10(
-        root="../../alternators/data",
+        root="data",
         train=True,
         download=True,
         transform=transforms.Compose(
@@ -37,7 +37,7 @@ dataloader = torch.utils.data.DataLoader(
         drop_last=True,
     )
 from PIL import Image
-save_dir='../../datasets/cifar10/images/'
+save_dir='./datasets/cifar10/images/'
 def save_figs(images, init_label):
     for ii in range(images.shape[0]):
 

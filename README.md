@@ -27,15 +27,13 @@ For more information, please see our paper,
 
 ## Usage
 
-You can use IDFF for image generation examples by running:
+To utilize IDFF for image generation examples, execute the following command for each dataset (inside each directory):
 ```
 python simple_gen_test.py 
 ```
-associated with each dataset (inside each directory). 
-To be able to run the code you need to download the pretrained model from below or train it from scratch.
+To run the code, you must either download the pretrained model from the link below or train it from scratch.
 
-Each pretrained model should be moved to 
-the ```results/IDFF-2.0-0.2``` directory associated with each example.
+Each pretrained model should be placed in the ```results/IDFF-2.0-0.2``` directory associated with each example.
 ## Pretrained Image Generation Models
 <table>
   <tr>
@@ -147,12 +145,23 @@ the ```results/IDFF-2.0-0.2``` directory associated with each example.
 For CelebA HQ 256 and LSUN datasets, we used instruction provided here [NVAE's instructions](https://github.com/NVlabs/NVAE#set-up-file-paths-and-data) out.
 
 The datasets for SST and MD experiments are provided [Here]().
-## FID and 50K sample generation
+## FID
+To calculate the FID score using 50K samples, you need to generate 50K samples. For instance, you can use the following commands:
 
-##
 
+```
+python gen_cifar10.py 
+```
+To generate original samples for CIFAR-10:  
+```
+python gen_true_cifar10.py 
+```
+Finally, you can use [pytorch_fid](https://github.com/mseitzer/pytorch-fid) to compute the FID between the two sets of samples with the following code:
+```
+python -m pytorch_fid  /path_to_original_samples  /path_to_generated_samples
+```
 ## Citation
-**Please CITE** our paper whenever this repository is used to help produce published results or incorporated into other software.
+When utilizing this repository to aid in generating published results or integrating it into other software, kindly acknowledge our paper by citing it.
 ```bibtex
 @article{xx,
   title={xx},
@@ -164,5 +173,4 @@ The datasets for SST and MD experiments are provided [Here]().
 
 ## Contacts
 
-If you have any problems, please open an issue in this repository
-or ping an email to [mr.rezaei](mailto:mr.rezaei@mail.utoronto.ca)
+If you encounter any issues, please feel free to open an issue in this repository or send an email to [mr.rezaei](mailto:mr.rezaei@mail.utoronto.ca)

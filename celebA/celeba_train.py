@@ -68,7 +68,7 @@ def train(argv):
 
     # DATASETS/DATALOADER
     dataset = datasets.CelebA(
-        root="../../alternators/data",split='train',
+        root="./data",split='train',
         transform=transforms.Compose(
             [transforms.Resize(64),
             transforms.CenterCrop(64),

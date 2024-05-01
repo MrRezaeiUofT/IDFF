@@ -109,7 +109,7 @@ def gen_1_img():
 
 
 from PIL import Image
-save_dir=f'../../result_fgdm/cifar10/images_ema_{SDE_sigma:.1f}/'
+save_dir=f'./result/cifar10/images_ema_{SDE_sigma:.1f}/'
 def save_figs(images, init_label):
     for ii in range(images.shape[0]):
         # Save the PIL image to a file

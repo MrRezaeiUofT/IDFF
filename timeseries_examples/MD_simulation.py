@@ -93,8 +93,8 @@ class SDE(torch.nn.Module):
             outs = (predicts[:, :DataDim] - y) / self.dt
         else:
 
-            outs = torch.sqrt(1 - (self.sigma ** 2) * t * (1 - t)) * (predicts[:, :DataDim] - y) / (1 - t) \
-                   - (predicts[:, DataDim:]) * self.sigma * torch.sqrt((t) * (1 - t))
+            outs = (1 - (self.sigma ** 2) * t * (1 - t)) * (predicts[:, :DataDim] - y) / (1 - t) \
+                   - (predicts[:, DataDim:]) *  (self.sigma **2) * torch.sqrt((t) * (1 - t))
 
 
         return outs.flatten(start_dim=1)

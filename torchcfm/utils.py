@@ -94,15 +94,79 @@ class torch_wrapper(torch.nn.Module):
         return self.model(torch.cat([x, t.repeat(x.shape[0])[:, None]], 1))
 
 
+
 def plot_trajectories(traj,true):
     """Plot trajectories of some selected samples."""
-    n = 2000
+    n = traj.shape[1]
     plt.figure(figsize=(6, 6))
     plt.scatter(traj[0, :n, 0], traj[0, :n, 1], s=10, alpha=0.2, c="g")
-    # plt.scatter(traj[:, :n, 0], traj[:, :n, 1], s=0.2, alpha=0.2, c="olive")
+    x=traj[:, :n, 0]
+    y=traj[:, :n, 1]
+    # plt.quiver(x[:-1], y[:-1], x[1:] - x[:-1], y[1:] - y[:-1], scale_units='xy', angles='xy', scale=1, color='b',width=0.01, headwidth=5)
+    # plt.scatter(traj[:-1, :n, 0], traj[:-1, :n, 1], s=0.2, alpha=0.5, c="olive")
     plt.scatter(traj[-1, :n, 0], traj[-1, :n, 1], s=4, alpha=1, c="black")
     # plt.scatter(true[:, 0], true[:, 1], s=4, alpha=1, c="g")
-    plt.legend(["Prior sample z(S)", "Flow", "z(0)"])
+    # plt.legend(["Prior sample z(S)", "Flow", "z(0)"])
+    plt.xlim(-5,5)
+    plt.ylim(-5, 5)
+    plt.xticks([])
+    plt.yticks([])
+def plot_trajectories_m(traj, true, moment_traj, finals):
+    """Plot trajectories of some selected samples with arrows representing moment_traj."""
+    n = traj.shape[1]
+
+    plt.scatter(finals[:, 0], finals[:, 1], s=.8, alpha=.3, c="black")
+    plt.scatter(traj[0, :n, 0], traj[0, :n, 1], s=10, alpha=1, c="g")
+    x = traj[:, :n, 0]
+    y = traj[:, :n, 1]
+    plt.quiver(x[:-1], y[:-1], x[1:] - x[:-1], y[1:] - y[:-1], scale_units='xy', angles='xy', scale=1, color='b',width=0.01, headwidth=2, alpha=.5)
+    for i in range(n):
+        for j in range(traj.shape[0]):
+            plt.arrow(x[j, i], y[j, i], moment_traj[j, i, 0],moment_traj[j, i, 1], color='r', alpha=0.8, width=0.01, head_width=0.2)
+
+    # plt.scatter(true[:, 0], true[:, 1], s=4, alpha=.1, c="g")
+    # plt.legend(["Prior samples", "IDFF", "IDFF momentum term"])
+    # plt.xlim(-5, 5)
+    # plt.ylim(-5, 5)
     plt.xticks([])
     plt.yticks([])
 
+
+
+def plt_flow_samples(prior_sample, npts=100, memory=100, kde_enable=True, title="", device="cpu"):
+    z = prior_sample.to(device)
+    zk = []
+    inds = torch.arange(0, z.shape[0]).to(torch.int64)
+    for ii in torch.split(inds, int(memory ** 2)):
+        zk.append(z[ii])
+    zk = torch.cat(zk, 0).cpu().numpy()
+    x_min, x_max = prior_sample[:, 0].min(), prior_sample[:, 0].max()
+    y_min, y_max = prior_sample[:, 1].min(), prior_sample[:, 1].max()
+    xx, yy = np.meshgrid(np.linspace(x_min, x_max, npts),
+                         np.linspace(y_min, y_max, npts))
+    grid_points = np.c_[xx.ravel(), yy.ravel()]
+
+    # ax.hist2d(zk[:, 0], zk[:, 1], range=[[LOW, HIGH], [LOW, HIGH]], bins=npts)
+
+    if kde_enable:
+        # Fit a kernel density estimator to the data
+        kde = KernelDensity(bandwidth=0.2)
+        kde.fit(zk)
+
+        # Compute the log density values for the grid points
+        log_density = kde.score_samples(grid_points)
+
+        # Reshape the log density values to match the grid shape
+        density = np.exp(log_density)
+        density = density.reshape(xx.shape)
+        plt.imshow(density.T,  # ,extent=(-2, 3, -2, 3),
+                  # interpolation='nearest',
+                  origin='lower')
+    else:
+        # hist, x_edges, y_edges = np.histogram2d(zk[:, 0], zk[:, 1], range=[[LOW, HIGH], [LOW, HIGH]], bins=(npts, npts))
+        # ax.imshow(hist, cmap='copper',
+        #           interpolation='nearest',
+        #           origin='lower')
+        # copper_color = (0.5, 0.3, 0.1)
+        burnt_orange = "#cc5500"
+        plt.scatter(zk[:, 0], zk[:, 1], c='k', s=.05, alpha=.02)

@@ -43,8 +43,8 @@ class SDE(torch.nn.Module):
         elif ((t== 1) ):
             outs = (predicts[:, :3, :, :]-y)/self.dt
         else:
-            outs =torch.sqrt(1-(self.sigma**2)*t*(1-t))*(predicts[:, :3, :, :]  - y) / (1 - t)\
-                  - (predicts[:, 3:, :, :]) * self.sigma * torch.sqrt((t) * (1 - t))
+            outs =(1-(self.sigma**2)*t*(1-t))*(predicts[:, :3, :, :]  - y) / (1 - t)\
+                  - (predicts[:, 3:, :, :]) *  (self.sigma **2) * torch.sqrt((t) * (1 - t))
 
         return outs.flatten(start_dim=1)
 

@@ -1,8 +1,9 @@
 # Implicit Dynamical Flow Fusion (IDFF) for Generative Modeling
 
 <p align="center">
-<em> Only 1 gpu is required.</em>
+<em> Only 1 gpu is required. </em>
 </p>
+A simple toy example [Notebook](2D-toys/2D-toy-examples.pyynb)
 
 IDFF simultaneously learns an implicit flow and a scoring model
 that come together during the sampling process. This structure allows

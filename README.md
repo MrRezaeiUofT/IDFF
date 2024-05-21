@@ -51,7 +51,7 @@ Each pretrained model should be placed in the ```results/IDFF-2.0-0.2``` directo
     <td><a href="cifar10/simple_gen_test.py"> cifar10/simple_gen_test.py</a></td>
     <td>5.87</td>
     <td>10</td>
-    <td><a href="https://drive.google.com/file/d/1973PZkSWH_7iVWBQ6xmQAPcdQGmnSgwu/view?usp=sharing">IDFF_cifar10_weights_step_final.pt</a></td>
+    <td><a href="">IDFF_cifar10_weights_step_final.pt</a></td>
     <td><a href="assets/cifar10_samples.png">cifar10_samples</a></td>
   </tr>
 
@@ -60,7 +60,7 @@ Each pretrained model should be placed in the ```results/IDFF-2.0-0.2``` directo
     <td><a href="celebA/simple_gen_test.py"> celebA/simple_gen_test.py</a></td>
     <td>11.83</td>
     <td>10</td>
-    <td><a href="https://drive.google.com/file/d/1tC9cDLb11fTCou_iLt39KvIsBc1ZGAI4/view?usp=drive_link">IDFF_celeba_weights_step_final.pt</a></td>
+    <td><a href="">IDFF_celeba_weights_step_final.pt</a></td>
     <td><a href="assets/celeba_samples.png">celeba_64_samples</a></td>
   </tr>
 
@@ -107,7 +107,7 @@ Each pretrained model should be placed in the ```results/IDFF-2.0-0.2``` directo
   <tr>
     <td> SST </td>
     <td><a href="sst/sst_forecaster.py"> sst/sst_forecaster.py</a></td>
-    <td><a href="https://drive.google.com/file/d/1z0Z6tXbwZzrUvQrBFqiyjmc99JuhOj-s/view?usp=sharing">IDFF_sst_weights_step_final.pt</a></td>
+    <td><a href="">IDFF_sst_weights_step_final.pt</a></td>
     
   </tr>
 </table>
@@ -130,7 +130,7 @@ Each pretrained model should be placed in the ```results/IDFF-2.0-0.2``` directo
   <tr>
     <td> MD </td>
     <td><a href="timeseries_examples/MD_simulation.py"> timeseries_examples/MD_simulation.py</a></td>
-    <td><a href="https://drive.google.com/file/d/1Pcq8BFkk4y1YirBdxK1ADM6hPMAbFC-P/view?usp=sharing">IDFF_MD_v1.pt</a></td>
+    <td><a href="">IDFF_MD_v1.pt</a></td>
     
   </tr>
 </table>

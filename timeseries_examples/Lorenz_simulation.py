@@ -45,7 +45,7 @@ class SDE(torch.nn.Module):
     # Diffusion
     def g(self, t, y):
 
-        return torch.ones_like(y) *self.sigma*0*torch.sqrt((t)*(1-t))
+        return torch.ones_like(y) (self.sigma **2)*torch.sqrt((t)*(1-t))
 # Solve the differential equations
 def lorenz(t, state, sigma=10, rho=28, beta=8/3):
     x, y, z = state

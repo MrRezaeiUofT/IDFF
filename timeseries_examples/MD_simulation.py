@@ -94,7 +94,7 @@ class SDE(torch.nn.Module):
         else:
 
             outs = (1 - (self.sigma ** 2) * t * (1 - t)) * (predicts[:, :DataDim] - y) / (1 - t) \
-                   - (predicts[:, DataDim:]) *  (self.sigma **2) * torch.sqrt((t) * (1 - t))
+                   - (predicts[:, DataDim:]/2) *  (self.sigma **2) * torch.sqrt((t) * (1 - t))
 
 
         return outs.flatten(start_dim=1)
@@ -102,7 +102,7 @@ class SDE(torch.nn.Module):
     # Diffusion
     def g(self, t, y):
 
-        return torch.ones_like(y) *self.sigma*1*torch.sqrt((t)*(1-t))
+        return torch.ones_like(y) *(self.sigma **2)*torch.sqrt((t)*(1-t))
 
 os.makedirs(savedir, exist_ok=True)
 

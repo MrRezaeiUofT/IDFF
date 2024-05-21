@@ -45,14 +45,14 @@ class SDE(torch.nn.Module):
         else:
 
             outs =(1-(self.sigma**2)*t*(1-t))*(predicts[:, :3, :, :]  - y) / (1 - t)\
-                  - (predicts[:, 3:, :, :]) *  (self.sigma **2) * torch.sqrt((t) * (1 - t))
+                  - (predicts[:, 3:, :, :]/2) *  (self.sigma **2) * torch.sqrt((t) * (1 - t))
 
         return outs.flatten(start_dim=1)
 
     # Diffusion
     def g(self, t, y):
 
-        return torch.ones_like(y) *self.sigma*0*torch.sqrt((t)*(1-t))
+        return torch.ones_like(y) *(self.sigma **2)*torch.sqrt((t)*(1-t))
 
 def generate_samples(model, parallel, savedir, step, net_="normal",sde_enable=False,sigma=.01,model_name='non'):
     """Save 64 generated images (8 x 8) for sanity check along training.

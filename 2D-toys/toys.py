@@ -44,7 +44,7 @@ class SDE(torch.nn.Module):
     # Diffusion
     def g(self, t, y):
 
-        return torch.ones_like(y) *self.sigma*0*torch.sqrt((t)*(1-t))
+        return torch.ones_like(y) *(self.sigma **2)*torch.sqrt((t)*(1-t))
 savedir = "8gaussians/"
 os.makedirs(savedir, exist_ok=True)
 

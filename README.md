@@ -173,5 +173,3 @@ When utilizing this repository to aid in generating published results or integra
 ```
 
 ## Contacts
-
-If you encounter any issues, please feel free to open an issue in this repository or send an email to [mr.rezaei](mailto:mr.rezaei@mail.utoronto.ca)

@@ -36,9 +36,9 @@ class SDE(torch.nn.Module):
             self.x0 = y
             outs = predicts[:, :DataDim]- self.x0
         elif (t ==  1):
-            outs =(1 - (self.sigma ** 2) * t * (1 - t))* (predicts[:, :DataDim] - y)/.1
+            outs =torch.sqrt(1 - (self.sigma ** 2) * t * (1 - t))* (predicts[:, :DataDim] - y)/.1
         else:
-            outs =(1 - (self.sigma ** 2) * t * (1 - t))*  (predicts[:, :DataDim] - y)/(1-t) +(predicts[:, DataDim:])* (self.sigma **2)*torch.sqrt((t)*(1-t))
+            outs =torch.sqrt(1 - (self.sigma ** 2) * t * (1 - t))*  (predicts[:, :DataDim] - y)/(1-t) +(predicts[:, DataDim:])* (self.sigma )*torch.sqrt((t)*(1-t))
 
         return outs.flatten(start_dim=1)
 

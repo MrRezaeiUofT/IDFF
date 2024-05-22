@@ -38,14 +38,14 @@ class SDE(torch.nn.Module):
         elif (t ==  1):
             outs =(1 - (self.sigma ** 2) * t * (1 - t))* (predicts[:, :DataDim] - y)/.1
         else:
-            outs =(1 - (self.sigma ** 2) * t * (1 - t))*  (predicts[:, :DataDim] - y)/(1-t) - (predicts[:, DataDim:]/2)* (self.sigma **2)*torch.sqrt((t)*(1-t))
+            outs =(1 - (self.sigma ** 2) * t * (1 - t))*  (predicts[:, :DataDim] - y)/(1-t) +(predicts[:, DataDim:])* (self.sigma **2)*torch.sqrt((t)*(1-t))
 
         return outs.flatten(start_dim=1)
 
     # Diffusion
     def g(self, t, y):
 
-        return torch.ones_like(y) (self.sigma **2)*torch.sqrt((t)*(1-t))
+        return torch.ones_like(y) *(self.sigma **2)*torch.sqrt((t)*(1-t))
 # Solve the differential equations
 def lorenz(t, state, sigma=10, rho=28, beta=8/3):
     x, y, z = state

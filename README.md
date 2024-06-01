@@ -18,7 +18,7 @@ See bellow for an illustration:
 </p>
 
 <p align="center">
-<em> The final samples are generated with NFE=10. A simple toy example is available here: 2D-toys/2D-toy-examples.pyynb)</em>
+<em> A) Represents the Sampling process with IDFF. B) Sample trajectories with NFE=10. C) More final samples with NFE=10. A simple toy example is available here: 2D-toys/2D-toy-examples.pyynb)</em>
 </p>
 
 

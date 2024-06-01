@@ -18,7 +18,7 @@ See bellow for an illustration:
 </p>
 
 <p align="center">
-<em> The final samples are generated with NFE=10. A simple toy example [Notebook](2D-toys/2D-toy-examples.pyynb)</em>
+<em> The final samples are generated with NFE=10. A simple toy example is available here: 2D-toys/2D-toy-examples.pyynb)</em>
 </p>
 
 
@@ -173,3 +173,4 @@ When utilizing this repository to aid in generating published results or integra
 ```
 
 ## Contacts
+For questions about the repo you can youse this [Email](mr.rezaei@mail.utoronto.ca)

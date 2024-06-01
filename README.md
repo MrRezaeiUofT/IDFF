@@ -18,7 +18,7 @@ See bellow for an illustration:
 </p>
 
 <p align="center">
-<em> A) Represents the Sampling process with IDFF. B) Sample trajectories with NFE=10. C) More final samples with NFE=10. A simple toy example is available here: 2D-toys/2D-toy-examples.pyynb)</em>
+<em> A) Represents the Sampling process with IDFF. B) Sample trajectories with NFE=10. C) More final samples with NFE=10. </em>
 </p>
 
 
@@ -27,8 +27,10 @@ For more information, please see our paper,
 [Implicit Dynamical Flow Fusion (IDFF) for Generative Modeling]().
 
 ## Usage
+* A simple toy example is available here ```2D-toys/2D-toy-examples.pyynb```.
 
-To utilize IDFF for image generation examples, execute the following command for each dataset (inside each directory):
+
+* To utilize IDFF for image generation examples, execute the following command for each dataset (inside each directory):
 ```
 python simple_gen_test.py 
 ```

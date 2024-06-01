@@ -3,7 +3,7 @@
 <p align="center">
 <em> Only 1 gpu is required. </em>
 </p>
-A simple toy example [Notebook](2D-toys/2D-toy-examples.pyynb)
+
 
 IDFF simultaneously learns an implicit flow and a scoring model
 that come together during the sampling process. This structure allows
@@ -18,7 +18,7 @@ See bellow for an illustration:
 </p>
 
 <p align="center">
-<em> The final samples are generated with NFE=10</em>
+<em> The final samples are generated with NFE=10. A simple toy example [Notebook](2D-toys/2D-toy-examples.pyynb)</em>
 </p>
 
 

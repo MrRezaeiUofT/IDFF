@@ -34,9 +34,9 @@ For more information, please see our paper,
 ```
 python simple_gen_test.py 
 ```
-To run the code, you must either download the pretrained model from the link below or train it from scratch.
+To run the code, you must either download the pre-trained model from the link below or train it from scratch.
 
-Each pretrained model should be placed in the ```results/IDFF-2.0-0.2``` directory associated with each example.
+Each pre-trained model should be placed in the ```results/IDFF-2.0-0.2``` directory associated with each example.
 ## Pretrained Image Generation Models
 <table>
   <tr>
@@ -145,7 +145,7 @@ Each pretrained model should be placed in the ```results/IDFF-2.0-0.2``` directo
 
 ## Dataset preparation 
 
-For CelebA HQ 256 and LSUN datasets, we used instruction provided here [NVAE's instructions](https://github.com/NVlabs/NVAE#set-up-file-paths-and-data) out.
+For CelebA HQ 256 and LSUN datasets, we used the instructions provided here [NVAE's instructions](https://github.com/NVlabs/NVAE#set-up-file-paths-and-data).
 
 The datasets for SST and MD experiments are provided [Here]().
 ## FID
@@ -164,7 +164,7 @@ Finally, you can use [pytorch_fid](https://github.com/mseitzer/pytorch-fid) to c
 python -m pytorch_fid  /path_to_original_samples  /path_to_generated_samples
 ```
 ## Citation
-When utilizing this repository to aid in generating published results or integrating it into other software, kindly acknowledge our paper by citing it.
+When utilizing this repository to generate published results or integrate it into other software, kindly acknowledge our paper by citing it.
 ```bibtex
 @article{xx,
   title={xx},
@@ -174,5 +174,3 @@ When utilizing this repository to aid in generating published results or integra
 }
 ```
 
-## Contacts
-For questions about the repo you can youse this [Email](mr.rezaei@mail.utoronto.ca)

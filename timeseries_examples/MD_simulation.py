@@ -1,6 +1,8 @@
 
 import math
 import os
+import sys
+sys.path.append('../')
 import pickle
 import time
 from sklearn.preprocessing import MinMaxScaler
@@ -43,8 +45,8 @@ def plt_flow_samples(prior_sample,color,alpha,marker, ax, npts=100, memory=100, 
     ax.invert_yaxis()
     # ax.get_xaxis().set_ticks(['p)
 
-use_cuda=True
-train_enable=False
+use_cuda=False
+train_enable=True
 savedir = "MD/"
 device = torch.device("cuda" if use_cuda else "cpu")
 dataset_name="polyALA"
@@ -54,7 +56,7 @@ batch_size = 10
 trjs_s=2
 scale=torch.tensor([.1]).to(device)
 
-with open(savedir+'/'+dataset_name+"_dataset.p", 'rb') as file:
+with open(dataset_name+"_dataset.p", 'rb') as file:
     dataset = pickle.load(file)
 orig_trajs=dataset['angles'][1].reshape([dataset['sim_length'],-1])
 dataset = torch.tensor(orig_trajs).squeeze().float().to(device)
@@ -176,14 +178,50 @@ if train_enable:
                     )
                     y_hat[tt]= traj.cpu().numpy()[-1]
 
-            fig, axes = plt.subplots(1, 2, figsize=(8, 4))
-            plt_flow_samples(torch.tensor(y_hat.reshape([-1, 2])), axes[0], npts=50, memory=50000, kde_enable=False,
-                             title="generated_samples_by_alternator", device="cpu")
-            plt_flow_samples(dataset.reshape([-1, 2]).cpu(), axes[1], npts=50, memory=50000, kde_enable=False, title="data",
-                             device="cpu")
-            # plt.tight_layout()
-            plt.savefig(savedir + f"_generated_IDFF_step_{k}.png")
-            plt.savefig(savedir + f"_generated_IDFF_step_{k}.svg", format='svg')
+            rgn_thr=30
+    fig, axes = plt.subplots(1, 2, figsize=(8, 4),sharex=True,sharey=True)
+    plt_flow_samples(torch.tensor(y_hat.reshape([-1, 2])),'g',.1,'.', axes[0], npts=50, memory=50000, kde_enable=False,
+                         title="generated_samples_", device="cpu")
+    plt_flow_samples(dataset.reshape([-1, 2]).cpu(),'g',.2,'.', axes[1], npts=50, memory=50000, kde_enable=False, title="data",
+                         device="cpu")
+
+    plt_flow_samples(torch.tensor(y_hat[:rgn_thr].reshape([-1, 2])), 'black', .4, 'o', axes[0], npts=50, memory=50000,
+                     kde_enable=False,
+                     title="generated_samples_", device="cpu")
+    plt_flow_samples(dataset[:rgn_thr].reshape([-1, 2]).cpu(), 'black', .8, 'o', axes[1], npts=50, memory=50000,
+                     kde_enable=False, title="data",
+                     device="cpu")
+
+    plt_flow_samples(torch.tensor(y_hat[-rgn_thr:].reshape([-1, 2])), 'blue', .4, '*', axes[0], npts=50, memory=50000,
+                     kde_enable=False,
+                     title="generated_samples_", device="cpu")
+    plt_flow_samples(dataset[-rgn_thr:].reshape([-1, 2]).cpu(), 'blue', .8, '*', axes[1], npts=50, memory=50000,
+                     kde_enable=False, title="data",
+                     device="cpu")
+        # plt.tight_layout()
+    axes[0].set_xlim([-180, 180])
+    axes[0].set_ylim([-180, 180])
+    plt.savefig(savedir + f"_generated_IDFF_step_test_{k+1}.png")
+    plt.savefig(savedir + f"_generated_IDFF_step_test_{k+1}.svg", format='svg')
+    plt.close()
+
+    fig, axes = plt.subplots(2, 1, figsize=(8, 4), sharex=True, sharey=False)
+    indx_angle=10
+    for kk in range(trjs_s):
+        axes[0].plot(y_hat[:, kk, :].reshape(max_length,int(DataDim//2),2)[:, indx_angle,0], color='r', alpha=0.9)
+        axes[1].plot(y_hat[:, kk, :].reshape(max_length, int(DataDim // 2), 2)[:, indx_angle, 1], color='r', alpha=0.9)
+    axes[0].plot(dataset.cpu().numpy().reshape(max_length,int(DataDim//2),2)[:, indx_angle,0], color='g', alpha=0.9)
+    axes[0].axvline(x=rgn_thr, color='k', linestyle='--')
+    axes[0].axvline(x=y_hat.shape[0] - rgn_thr, color='b', linestyle='--')
+    axes[1].plot(dataset.cpu().numpy().reshape(max_length, int(DataDim // 2), 2)[:, indx_angle, 1], color='g',
+                 alpha=0.9)
+    axes[1].axvline(x=y_hat.shape[0]-rgn_thr, color='b', linestyle='--')
+    axes[1].axvline(x=rgn_thr, color='k', linestyle='--')
+    # axes[1].set_xlim(-180,180)
+    # axes[1].set_ylim(-180, 180)
+    plt.savefig(savedir + f"_generated_IDFF_step_test_trj_{k+1}.png")
+    plt.savefig(savedir + f"_generated_IDFF_step_test_trj_{k+1}.svg", format='svg')
+
 
     torch.save(model, f"{savedir}/IDFF_MD_v1.pt")
 

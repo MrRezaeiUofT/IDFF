@@ -182,8 +182,8 @@ if train_enable:
             plt_flow_samples(dataset.reshape([-1, 2]).cpu(), axes[1], npts=50, memory=50000, kde_enable=False, title="data",
                              device="cpu")
             # plt.tight_layout()
-            plt.savefig(savedir + f"_generated_IDFF_images_step_{k}.png")
-            plt.savefig(savedir + f"_generated_IDFF_images_step_{k}.svg", format='svg')
+            plt.savefig(savedir + f"_generated_IDFF_step_{k}.png")
+            plt.savefig(savedir + f"_generated_IDFF_step_{k}.svg", format='svg')
 
     torch.save(model, f"{savedir}/IDFF_MD_v1.pt")
 
@@ -211,28 +211,28 @@ else:
     rgn_thr=30
     fig, axes = plt.subplots(1, 2, figsize=(8, 4),sharex=True,sharey=True)
     plt_flow_samples(torch.tensor(y_hat.reshape([-1, 2])),'g',.1,'.', axes[0], npts=50, memory=50000, kde_enable=False,
-                         title="generated_samples_by_alternator", device="cpu")
+                         title="generated_samples_", device="cpu")
     plt_flow_samples(dataset.reshape([-1, 2]).cpu(),'g',.2,'.', axes[1], npts=50, memory=50000, kde_enable=False, title="data",
                          device="cpu")
 
     plt_flow_samples(torch.tensor(y_hat[:rgn_thr].reshape([-1, 2])), 'black', .4, 'o', axes[0], npts=50, memory=50000,
                      kde_enable=False,
-                     title="generated_samples_by_alternator", device="cpu")
+                     title="generated_samples_", device="cpu")
     plt_flow_samples(dataset[:rgn_thr].reshape([-1, 2]).cpu(), 'black', .8, 'o', axes[1], npts=50, memory=50000,
                      kde_enable=False, title="data",
                      device="cpu")
 
     plt_flow_samples(torch.tensor(y_hat[-rgn_thr:].reshape([-1, 2])), 'blue', .4, '*', axes[0], npts=50, memory=50000,
                      kde_enable=False,
-                     title="generated_samples_by_alternator", device="cpu")
+                     title="generated_samples_", device="cpu")
     plt_flow_samples(dataset[-rgn_thr:].reshape([-1, 2]).cpu(), 'blue', .8, '*', axes[1], npts=50, memory=50000,
                      kde_enable=False, title="data",
                      device="cpu")
         # plt.tight_layout()
     axes[0].set_xlim([-180, 180])
     axes[0].set_ylim([-180, 180])
-    plt.savefig(savedir + f"_generated_IDFF_images_step_test.png")
-    plt.savefig(savedir + f"_generated_IDFF_images_step_test.svg", format='svg')
+    plt.savefig(savedir + f"_generated_IDFF_step_test.png")
+    plt.savefig(savedir + f"_generated_IDFF_step_test.svg", format='svg')
     plt.close()
 
     fig, axes = plt.subplots(2, 1, figsize=(8, 4), sharex=True, sharey=False)
@@ -249,8 +249,8 @@ else:
     axes[1].axvline(x=rgn_thr, color='k', linestyle='--')
     # axes[1].set_xlim(-180,180)
     # axes[1].set_ylim(-180, 180)
-    plt.savefig(savedir + f"_generated_IDFF_images_step_test_trj.png")
-    plt.savefig(savedir + f"_generated_IDFF_images_step_test_trj.svg", format='svg')
+    plt.savefig(savedir + f"_generated_IDFF_step_test_trj.png")
+    plt.savefig(savedir + f"_generated_IDFF_step_test_trj.svg", format='svg')
 
 
     all_cc=[]

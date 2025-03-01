@@ -178,11 +178,12 @@ python -m pytorch_fid  /path_to_original_samples  /path_to_generated_samples
 ## Citation
 When utilizing this repository to generate published results or integrate it into other software, kindly acknowledge our paper by citing it.
 ```bibtex
-@article{xx,
-  title={xx},
-  author={xx},
-  journal={xx},
-  year={xx}
+@article{rezaei2024implicit,
+  title={Implicit Dynamical Flow Fusion (IDFF) for Generative Modeling},
+  author={Rezaei, Mohammad R and Krishnan, Rahul G and Popovic, Milos R and Lankarany, Milad},
+  journal={arXiv preprint arXiv:2409.14599},
+  year={2024}
 }
+
 ```
 

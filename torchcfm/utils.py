@@ -51,14 +51,25 @@ def pinwheel(n):
     rotations = np.reshape(rotations.T, (-1, 2, 2))
 
     return torch.tensor(2 * rng.permutation(np.einsum("ti,tij->tj", features, rotations)))
-
 def spirals_2d(n):
-    n = np.sqrt(np.random.rand(n // 2, 1)) * 540 * (2 * np.pi) / 360
-    d1x = -np.cos(n) * n + np.random.rand(n // 2, 1) * 0.5
-    d1y = np.sin(n) * n + np.random.rand(n // 2, 1) * 0.5
-    x = np.vstack((np.hstack((d1x, d1y)), np.hstack((-d1x, -d1y)))) / 3
+    n = int(n)  # Ensure n is an integer
+    half_n = n // 2
+
+    theta = np.sqrt(np.random.rand(half_n, 1)) * 540 * (2 * np.pi) / 360  # Angle in radians
+    d1x = -np.cos(theta) * theta + np.random.rand(half_n, 1) * 0.5
+    d1y = np.sin(theta) * theta + np.random.rand(half_n, 1) * 0.5
+
+    # Stack spiral and mirrored spiral
+    x = np.vstack((
+        np.hstack((d1x, d1y)),
+        np.hstack((-d1x, -d1y))
+    )) / 3
+
+    # Add Gaussian noise
     x += np.random.randn(*x.shape) * 0.1
-    return torch.tensor(x)
+
+    return torch.tensor(x, dtype=torch.float32)
+
 
 def checkerboard(n):
     x1 = np.random.rand(n) * 4 - 2

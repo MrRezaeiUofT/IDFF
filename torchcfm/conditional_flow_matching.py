@@ -208,7 +208,7 @@ class ConditionalFlowMatcher:
         [4] Simulation-free Schrodinger bridges via score and flow matching, Preprint, Tong et al.
         """
         sigma_t = self.compute_sigma_t(t)
-        return 2 * sigma_t / (self.sigma**2 + 1e-8)
+        return 2 * sigma_t**2 / (self.sigma**2 + 1e-8)
 
 
 class ExactOptimalTransportConditionalFlowMatcher(ConditionalFlowMatcher):
@@ -262,7 +262,7 @@ class ExactOptimalTransportConditionalFlowMatcher(ConditionalFlowMatcher):
         ----------
         [1] Improving and Generalizing Flow-Based Generative Models with minibatch optimal transport, Preprint, Tong et al.
         """
-        x0, x1 = self.ot_sampler.sample_plan(x0, x1)
+        # x0, x1 = self.ot_sampler.sample_plan(x0, x1)
         self.x1=x1
         self.x0=x0
         return super().sample_location_and_conditional_flow(x0, x1, t, return_noise)
@@ -303,7 +303,7 @@ class ExactOptimalTransportConditionalFlowMatcher(ConditionalFlowMatcher):
         ----------
         [1] Improving and Generalizing Flow-Based Generative Models with minibatch optimal transport, Preprint, Tong et al.
         """
-        x0, x1, y0, y1 = self.ot_sampler.sample_plan_with_labels(x0, x1, y0, y1)
+        # x0, x1, y0, y1 = self.ot_sampler.sample_plan_with_labels(x0, x1, y0, y1)
         if return_noise:
             t, xt, ut, eps = super().sample_location_and_conditional_flow(x0, x1, t, return_noise)
             return t, xt, ut, y0, y1, eps
@@ -499,7 +499,7 @@ class SchrodingerBridgeConditionalFlowMatcher(ConditionalFlowMatcher):
         ----------
         [1] Improving and Generalizing Flow-Based Generative Models with minibatch optimal transport, Preprint, Tong et al.
         """
-        x0, x1 = self.ot_sampler.sample_plan(x0, x1)
+        # x0, x1 = self.ot_sampler.sample_plan(x0, x1)
         return super().sample_location_and_conditional_flow(x0, x1, t, return_noise)
 
     def guided_sample_location_and_conditional_flow(
@@ -538,7 +538,7 @@ class SchrodingerBridgeConditionalFlowMatcher(ConditionalFlowMatcher):
         ----------
         [1] Improving and Generalizing Flow-Based Generative Models with minibatch optimal transport, Preprint, Tong et al.
         """
-        x0, x1, y0, y1 = self.ot_sampler.sample_plan_with_labels(x0, x1, y0, y1)
+        # x0, x1, y0, y1 = self.ot_sampler.sample_plan_with_labels(x0, x1, y0, y1)
         if return_noise:
             t, xt, ut, eps = super().sample_location_and_conditional_flow(x0, x1, t, return_noise)
             return t, xt, ut, y0, y1, eps

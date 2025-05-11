@@ -11,6 +11,6 @@ These components operate jointly during sampling, enabling fast, accurate genera
 Thanks to its momentum-driven structure, **IDFF reduces the number of function evaluations (NFE) by more than 10×** compared to traditional conditional flow matching (CFM) models.
 
 <p align="center">
-<img src="assets/Figure_1.png" alt="IDFF Overview" width="90%"/>
+<img src="2D_examples/sample_8gaussians/kde_with_baselines_and_gamma3_rotated.png" alt="IDFF 2D example" width="90%"/>
 </p>
 

@@ -10,9 +10,13 @@ These components operate jointly during sampling, enabling fast, accurate genera
 Thanks to its momentum-driven structure, **IDFF reduces the number of function evaluations (NFE) by more than 10×** compared to traditional conditional flow matching (CFM) models, while improving sampling quality and trajectory coherence.
 
 <p align="center">
-<img src="2D_examples/sample_8gaussians/kde_with_baselines_and_gamma3_rotated.png" alt="IDFF 2D example" width="90%"/>
+<img src="2D_examples/ImageGen.png" alt="IDFF image generation example" width="90%"/>
 </p>
 
+------------------------
+<p align="center">
+<img src="2D_examples/sample_8gaussians/kde_with_baselines_and_gamma3_rotated.png" alt="IDFF 2D example" width="90%"/>
+</p>
 
 
 ## 🔬 Key Features
@@ -124,6 +128,22 @@ Install dependencies:
 
 ```bash
 pip install -r requirements.txt
+```
+
+## 🧠 Citation
+
+If you find this work useful, please cite:
+
+```
+@misc{rezaei2025implicitdynamicalflowfusion,
+      title={Implicit Dynamical Flow Fusion (IDFF) for Generative Modeling}, 
+      author={Mohammad R. Rezaei and Milos R. Popovic and Milad Lankarany and Rahul G. Krishnan},
+      year={2025},
+      eprint={2409.14599},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2409.14599}, 
+}
 ```
 
 ## 📬 Contact

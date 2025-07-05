@@ -1,6 +1,3 @@
-✅ Here’s the **complete README.md** in **Markdown format** — ready to use:
-
-````markdown
 # Implicit Dynamical Flow Fusion (IDFF) for Generative Modeling
 
 <p align="center">
@@ -16,7 +13,7 @@ Thanks to its momentum-driven structure, **IDFF reduces the number of function e
 <img src="2D_examples/sample_8gaussians/kde_with_baselines_and_gamma3_rotated.png" alt="IDFF 2D example" width="90%"/>
 </p>
 
----
+
 
 ## 🔬 Key Features
 
@@ -25,8 +22,6 @@ Thanks to its momentum-driven structure, **IDFF reduces the number of function e
 - **Versatile Domains**: Supports both 2D synthetic distributions (e.g., checkerboard, spirals) and high-dimensional molecular dynamics (MD) data.
 - **Fast Inference**: High-quality samples with as few as 2–3 function evaluations.
 - **Easy Integration**: Compatible with `torchdiffeq` and `torchsde` solvers; plug in your own models.
-
----
 
 ## 🧪 2D Toy Example: Checkerboard
 
@@ -48,8 +43,6 @@ python run_checkerboard.py
 <img src="sample_checkerboard/kde_with_baselines_and_gamma3_rotated.png" width="85%">
 </p>
 
----
-
 ## 🧬 Molecular Dynamics: PolyALA
 
 We apply IDFF to molecular dynamics simulations, specifically backbone dihedral trajectories from PolyALA protein chains.
@@ -69,24 +62,6 @@ python run_md_simulation.py
 <p align="center">
 <img src="MD/polyALA/phase_plot_overlayed_initial.png" width="80%">
 </p>
-
----
-
-## 📊 Evaluation Metrics
-
-IDFF is evaluated on both low- and high-dimensional tasks using:
-
-* **MMD (Maximum Mean Discrepancy)**
-* **KL Divergence**
-* **RMSE / MAE / Pearson CC**
-* **Phase Space Trajectories**
-
-| Model                                 | MMD ↓     | KL ↓      | RMSE ↓   | CC ↑     |
-| ------------------------------------- | --------- | --------- | -------- | -------- |
-| CFM (baseline)                        | 0.063     | 0.412     | 0.51     | 0.86     |
-| IDFF \$(\gamma\_1=0.2, \gamma\_2=5)\$ | **0.031** | **0.208** | **0.39** | **0.93** |
-
----
 
 ## ⚙️ Usage Overview
 
@@ -108,7 +83,6 @@ You can customize the following parameters:
 * `nfe`: number of function evaluations
 * `dataset_name`: e.g., `polyALA`
 
----
 
 ## 🧠 Citation
 
@@ -126,8 +100,6 @@ If you find this work useful, please cite:
 }
 ```
 
----
-
 ## 📁 Directory Structure
 
 ```
@@ -141,7 +113,6 @@ If you find this work useful, please cite:
 └── README.md
 ```
 
----
 
 ## 📦 Dependencies
 
@@ -155,9 +126,7 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
----
-
 ## 📬 Contact
 
-For questions, feel free to reach out to the authors on the [arXiv page](https://arxiv.org/abs/2409.14599).
+For questions, feel free to raise an issue.
 

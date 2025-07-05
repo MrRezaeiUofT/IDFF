@@ -35,7 +35,7 @@ We demonstrate the effect of IDFF on a synthetic 2D distribution using KDE overl
 
 **Run:**
 ```bash
-python @D_examples/Autograd_example_order2.py
+python 2D_examples/Autograd_example_order2.py
 ````
 
 <p align="center">
@@ -60,30 +60,13 @@ python timeseris_example/MD_simulation.py
 -Example Phase Space Plot:
 
 <p align="center">
-<img src="MD/md_sim.png" width="80%">
+<img src="timeseris_example/md_sim.png" width="80%">
 </p>
 
 You can customize the following parameters:
 * `gamma1`, `gamma2`: momentum modulation
 * `nfe`: number of function evaluations
 
-
-
-## 🧠 Citation
-
-If you find this work useful, please cite:
-
-```bibtex
-@misc{rezaei2025implicitdynamicalflowfusion,
-      title={Implicit Dynamical Flow Fusion (IDFF) for Generative Modeling}, 
-      author={Mohammad R. Rezaei and Milos R. Popovic and Milad Lankarany and Rahul G. Krishnan},
-      year={2025},
-      eprint={2409.14599},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2409.14599}, 
-}
-```
 
 ## 📦 Dependencies
 

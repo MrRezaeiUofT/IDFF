@@ -1,4 +1,10 @@
 # Implicit Dynamical Flow Fusion (IDFF) for Generative Modeling
+<h1 align="center">Implicit Dynamical Flow Fusion (IDFF) for Generative Modeling</h1>
+<p align="center">
+  <a href="https://arxiv.org/abs/2409.14599">
+    <img src="https://img.shields.io/badge/arXiv-Paper-red?logo=arxiv" alt="arXiv">
+  </a>
+</p>
 
 <p align="center">
 <em>Only 1 GPU is required.</em>

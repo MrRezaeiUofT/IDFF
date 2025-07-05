@@ -1,4 +1,3 @@
-# Implicit Dynamical Flow Fusion (IDFF) for Generative Modeling
 <h1 align="center">Implicit Dynamical Flow Fusion (IDFF) for Generative Modeling</h1>
 <p align="center">
   <a href="https://arxiv.org/abs/2409.14599">
